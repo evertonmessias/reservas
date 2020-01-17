@@ -1,0 +1,39 @@
+image: alpine:latest
+
+before_script:
+  # Install ssh-agent if not already installed, it is required by Docker.
+  - 'which ssh-agent || ( apk add --no-cache openssh-client && apk add --no-cache rsync )'
+
+  # Run ssh-agent (inside the build environment)
+  - eval $(ssh-agent -s)
+
+  # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+  - echo "$SSH_PRIVATE_KEY" | ssh-add - > /dev/null
+
+  # For Docker builds disable host key checking. Be aware that by adding that
+  # you are suspectible to man-in-the-middle attacks.
+  # WARNING: Use this only with the Docker executor, if you use it with shell
+  # you will overwrite your user's SSH config.
+  # - mkdir -p ~/.ssh
+  # - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  # In order to properly check the server's host key, assuming you created the
+  # SSH_SERVER_HOSTKEYS variable previously, uncomment the following two lines
+  # instead.
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
+
+  - echo $RSYNC_EXCLUDE > rsync_exclude.txt
+  
+mrbs_dev_deploy:
+  tags:
+  - docker
+  stage: deploy
+  script:
+  - ls -lha *
+  - find . -type d -print -exec chmod 750 {} +
+  - find . -type f -print -exec chmod 740 {} +
+  - rm -fr .git
+  - ls -lha *
+  - rsync -az --force --delete --progress --exclude-from=rsync_exclude.txt -e "ssh -p 694" ./* $USER_NAME@$SSH_SERVER_IC:./
+  only:
+  - master
