@@ -1,27 +1,17 @@
 <?php
-
 $arq = @$_GET['arq'];
 
 function lerArquivo($pathArquivo){
-    $ponteiro = fopen($pathArquivo,'r');
-
-    if ($ponteiro == false) 
-        die('Não foi possível criar o arquivo.');
-    else 
-        return $ponteiro;
-}
-
-function retornaConteudoArquivo($ponteiro){
+    $html = fopen($pathArquivo,'r');
     $conteudo = '';
-    while(!feof($ponteiro)) {
-        $conteudo = $conteudo . fgets($ponteiro);
+    while(!feof($html)) {
+        $conteudo = $conteudo . fgets($html);
     }
-    fclose($ponteiro);
+    fclose($html);
     return $conteudo;
 }
 
-$pont = lerArquivo($arq);
-$msg = retornaConteudoArquivo($pont);
+$msg = lerArquivo($arq);
 
 $cabecalho = 'MIME-Version: 1.0' . "\r\n";
 $cabecalho .= 'Content-type: text/html; charset=iso-8859-1;' . "\r\n";
@@ -31,15 +21,5 @@ $assunto = 'RESERVAS IC - Tarefas da Semana';
 
 $enviar = mail($destino, $assunto, $msg, $cabecalho);
 
-if($enviar){echo "Mensagem Enviada !";}
+if($enviar){echo "Mensagem ENVIADA";}
 else{echo "Erro - Mensagem não Enviada !";}
-
-
-
-
-
-
-
-
-
-?>

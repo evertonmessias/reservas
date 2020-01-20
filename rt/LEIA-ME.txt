@@ -1,0 +1,12 @@
+RT - Registro de Trabalhos.
+
+Esta aplicação, de autoria de Éverton e Paulo, tem por finalidade listar o Banco de Dados do site
+reservas, cujas colunas hasVideoConf hasRecording hasLaptop estejam ativadas.
+
+O arquivo rt.sh deve ser chamado pelo cron em tempos pré determinados.
+
+Após ser executado, o script rt.sh executa, via curl:
+1º O arquivo index.php; que lê o banco de dados e gera um log html.
+2º O arquivo mail.php; que lê o arquivo de log e o envia por e-mail para o suporte.
+
+Qualquer dúvida por favor procurar Éverton e/ou Paulo.
