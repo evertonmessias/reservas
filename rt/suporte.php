@@ -3,7 +3,7 @@
 // EMAILS DE TAREFAS PARA O SUPORTE
 
 $cab_html = '<!DOCTYPE html><html lang="pt-br"><head><title>RT - Registros de Trabalho</title><meta charset="UTF-8" /><style>
-      h2 {text-align: center;}table,h2 {width: 1250px;border-spacing: 0px;display: block;position: relative;
+      h2 {text-align: left;}table,h2 {width: 1250px;border-spacing: 0px;display: block;position: relative;
         margin: 0 auto;}td {border: 1px solid #000;padding: 4px;}tr.titulo {text-align: center;
         font-weight: bold;background-color: #ddd;font-size: 17px;}</style></head><body>';
 
