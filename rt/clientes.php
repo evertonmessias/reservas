@@ -93,16 +93,16 @@ $avisos = consultar(conexao(), $inicio, $fim);
 
 print_r($avisos);
 
-
-/*
-function enviar($mensagem){
+function enviar($destino,$mensagem){
 $cabecalho = 'MIME-Version: 1.0' . "\r\n";
 $cabecalho .= 'Content-type: text/html; charset=iso-8859-1;' . "\r\n";
-$destino = 'everton.messias@gmail.com';
 $assunto = 'RESERVAS IC - Tarefas da Semana';
 mail($destino, $assunto, $mensagem, $cabecalho);
 }
-*/
+
+for ($i=0;$i<$avisos[0];$i++){
+  enviar($avisos[1][$i],$avisos[2][$i]);  
+}
 
 
 ?>
