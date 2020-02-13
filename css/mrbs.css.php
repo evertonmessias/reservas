@@ -1302,3 +1302,37 @@ div#check_tabs {background-image: none}
   text-decoration: none;
   cursor: pointer;
 }
+
+fieldset.importante{
+  margin-left:100px;  
+  width:305px;
+  height:35px;
+  padding-left:5px;
+  margin-top:3px;
+  border: 2px solid #aaa;
+  border-radius:0px;
+}
+
+fieldset.importante label{
+  margin-left: 10px;
+}
+
+fieldset.importante label[for="f_mail"]{  
+  margin-left:-75px;
+}
+
+fieldset.importante label[for="f_mail"]::before{
+  content: "E-"
+}
+
+fieldset.importante input[type=checkbox]::after{
+  margin-left:20px;
+  content: "(Sim/Não)";
+}
+
+fieldset.importante input[type=text]{
+  margin-left:20px;
+  margin-top: -5px;
+  height:20px;
+  width:205px;
+}

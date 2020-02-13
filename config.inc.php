@@ -266,8 +266,10 @@ define ("MAIL_CC", '');
 
 $vocab_override["en"]["type.J"] = "EQ";
 $vocab_override["en"]["entry.hasVideoConf"]="Will it have video conference?";
-$vocab_override["pt-br"]["entry.hasVideoConf"]="Terá vídeo conferência?";
+$vocab_override["pt-br"]["entry.hasVideoConf"]="Vídeo conferência ?";
 $vocab_override["en"]["entry.hasRecording"]="Will it have recording/streaming?";
-$vocab_override["pt-br"]["entry.hasRecording"]="Terá gravação/streaming?";
+$vocab_override["pt-br"]["entry.hasRecording"]="Gravação/streaming";
+$vocab_override["en"]["entry.hasLaptop"]="Will it have Laptop?";
+$vocab_override["pt-br"]["entry.hasLaptop"]="Terá Laptop ?";
 
 //mrbs_admin_email is used in the settings of: mail_from and mail_recipients

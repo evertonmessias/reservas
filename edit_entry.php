@@ -267,7 +267,6 @@ function create_field_entry_name($disabled=FALSE)
   echo "</div>\n";
 }
 
-
 function create_field_entry_description($disabled=FALSE)
 {
   global $description, $select_options, $datalist_options, $is_mandatory_field, $maxlength;
@@ -558,13 +557,12 @@ function create_field_entry_privacy_status($disabled=FALSE)
   }
 }
 
-
 function create_field_entry_custom_field($field, $key, $disabled=FALSE)
 {
   global $custom_fields, $tbl_entry;
   global $is_mandatory_field, $text_input_max, $maxlength;
   
-  echo "<div>\n";
+  echo "<div id=\"suport\">\n\n<fieldset class='importante'>";
   $params = array('label'      => get_loc_field_name($tbl_entry, $key) . ":",
                   'name'       => VAR_PREFIX . $key,
                   'value'      => isset($custom_fields[$key]) ? $custom_fields[$key] : NULL,
@@ -1205,6 +1203,8 @@ foreach ($edit_entry_field_order as $key)
 
   case 'privacy_status':
     create_field_entry_privacy_status();
+    echo "<h2>&nbsp;</h2>";
+    echo "<h2 class='aviso'>&emsp;&emsp;&emsp;&emsp;Importante:</h2>";
     break;
 
   default:
