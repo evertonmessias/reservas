@@ -8,5 +8,4 @@ $paulo[] = " - ";
 
 $paulo[] = "Sergio";
 
-
 print_r($paulo);

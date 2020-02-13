@@ -27,12 +27,10 @@ $data = $dia . "-" . $mes . "-" . $ano . "_" . $hora . ":" . $min;
 $path = './log/' . $data . '.html';
 $arquivo = fopen($path, 'w');
 
-
 function conexao()
 {
   return mysqli_connect("localhost", "root", "efc2505xx", "mrbsic_dev");
 }
-
 
 function consultar($conexao, $inicio, $fim)
 {
@@ -93,7 +91,6 @@ function consultar($conexao, $inicio, $fim)
   return $toda_tabela;
 }
 $toda_tabela = consultar(conexao(), $inicio, $fim);
-
 
 $html = $cab_html . $toda_tabela . "</body></html>";
 
