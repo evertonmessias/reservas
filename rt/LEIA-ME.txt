@@ -7,7 +7,9 @@ o Banco de Dados do site reservas, cujas colunas 'Tipo' seja iguais a
 Os arquivo suporte1dias.sh, suporte7dias.sh e clientes.sh deve ser
 chamados pelo cron em tempos pré determinados.
 
-Após ser executado, os scripts .sh executarão, via curl, os arquivos 
-de php que enviarão e-mails para o suporte e para os clientes.
+Após ser chamados pelo cron os scripts .sh executarão, via curl, os arquivos 
+de php que enviarão e-mails para o SUPORTE e para os CLIENTES.
+
+** Alterar as variáveis no arquivo config.inc
 
 ** Qualquer dúvida por favor procurar Éverton e/ou Paulo.
