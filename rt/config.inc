@@ -1,5 +1,4 @@
 <?php
-$eu = "***********************EVERTON";
 $server = "localhost";
 $user = "root";
 $password = "efc2505xx";
