@@ -4,12 +4,12 @@ Esta aplicação, de autoria de Éverton e Paulo, tem por finalidade listar
 o Banco de Dados do site reservas, cujas colunas 'Tipo' seja iguais a 
 'Tese/Dissertação' ou 'EQ' e também o campo 'Tem VideoConf' esteja ativado.
 
-Os arquivo suporte1dias.sh, suporte7dias.sh e clientes.sh deve ser
-chamados pelo cron em tempos pré determinados.
+Os arquivo 'disparosDiarios.sh' e 'disparosSemanais.sh' devem ser
+chamados pelo CRON em tempos pré determinados (diário e semanal).
 
-Após ser chamados pelo cron os scripts .sh executarão, via curl, os arquivos 
-de php que enviarão e-mails para o SUPORTE e para os CLIENTES.
+Após serem chamados pelo cron os scripts .sh executarão, via curl, 
+os arquivos PHP que por sua vez enviarão e-mails para o SUPORTE e para os CLIENTES.
 
-** Alterar as variáveis no arquivo config.inc
+* Obs.: Alterar as variáveis globais no arquivo config.inc
 
-** Qualquer dúvida por favor procurar Éverton e/ou Paulo.
+** Qualquer dúvida, por favor, procurar Éverton e/ou Paulo.
