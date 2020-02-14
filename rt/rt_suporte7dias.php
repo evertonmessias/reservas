@@ -1,5 +1,7 @@
 <?php
 
+include './config.inc';
+
 // EMAILS DE TAREFAS PARA O SUPORTE
 
 if (@$_GET['dia'] && @$_GET['mes'] && @$_GET['ano']) {
@@ -22,10 +24,7 @@ $data = $dia . "-" . $mes . "-" . $ano . "_" . $hora . ":" . $min;
 $path = './log/' . $data . '.html';
 $arquivo = fopen($path, 'w');
 
-function conexao()
-{
-  return mysqli_connect("localhost", "root", "efc2505xx", "mrbsic_dev");
-}
+$conexao =  mysqli_connect($server, $user, $password, $table);
 
 function consultar($conexao, $inicio, $fim)
 {
@@ -156,7 +155,7 @@ function consultar($conexao, $inicio, $fim)
   $corpo_tabela2 = "";
   $vetor2 = array();
   while ($vetor2 = mysqli_fetch_array($lista2)) {
-    $corpo_tabela2 = $corpo_tabela2 . "<tr><td>" . conv2data($vetor2[0]) . "</td><td>" . conv2data($vetor2[1]) . "</td><td>" . $vetor2[2] . "</td><td>" . $vetor2[3] . "</td><td>" . utf8_encode($vetor2[4]) . "</td><td>" . $vetor2[5] . "</td><td>" . conv2type($vetor2[6]) . "</td><td>" . conv2respVC($vetor2[7])[0] . "</td><td>" . conv2resp($vetor2[8]) . "</td><td>" . conv2resp($vetor2[9]) . "</td></tr>";
+    $corpo_tabela2 = $corpo_tabela2 . "<tr><td>" . conv2data($vetor2[0]) . "</td><td>" . conv2data($vetor2[1]) . "</td><td>" . $vetor2[2] . "</td><td>" . $vetor2[3] . "</td><td>" . utf8_encode($vetor2[4]) . "</td><td>" . $vetor2[5] . "</td><td>" . conv2type($vetor2[6]) . "</td><td style='background-color:#f00;'>" . conv2resp($vetor2[7]) . "</td><td>" . conv2resp($vetor2[8]) . "</td><td>" . conv2resp($vetor2[9]) . "</td></tr>";
   }
 
   // ****************************************
@@ -174,7 +173,7 @@ function consultar($conexao, $inicio, $fim)
   $pretab = $cab_html . $titulo . $cab_tabela  . $corpo_tabela . "</table>" . $cab_tabela2 . $corpo_tabela2 . "</table>";
   return $pretab;
 }
-$toda_tabela = consultar(conexao(), $inicio, $fim);
+$toda_tabela = consultar($conexao, $inicio, $fim);
 
 $html = $toda_tabela . "</body></html>";
 
@@ -184,12 +183,9 @@ fclose($arquivo);
 $cabecalho = 'MIME-Version: 1.0' . "\r\n";
 $cabecalho .= 'Content-type: text/html; charset=iso-8859-1;' . "\r\n";
 
-$destino = 'everton.messias@gmail.com';
+$destino = $mail_suport;
 $assunto = 'RESERVAS IC - Tarefas da Semana';
 
 mail($destino, $assunto, $html, $cabecalho);
 
 ?>
-</body>
-
-</html>

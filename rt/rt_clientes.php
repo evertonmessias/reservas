@@ -1,5 +1,7 @@
 <?php
 
+include './config.inc';
+
 // EMAILS DE AVISOS PARA OS CLIENTES
 
 if (@$_GET['dia'] && @$_GET['mes'] && @$_GET['ano']) {
@@ -13,11 +15,7 @@ $inicio = $in->getTimestamp();
 $f = $in->add(new DateInterval('P1D')); // add 1 dias
 $fim = $f->getTimestamp();
 
-function conexao()
-{
-  return mysqli_connect("localhost", "root", "efc2505xx", "mrbsic_dev");
-}
-
+$conexao =  mysqli_connect($server, $user, $password, $table);
 
 function consultar($conexao, $inicio, $fim)
 {
@@ -97,7 +95,7 @@ function consultar($conexao, $inicio, $fim)
   return $saida;
 }
 
-$avisos = consultar(conexao(), $inicio, $fim);
+$avisos = consultar($conexao, $inicio, $fim);
 
 function enviar($destino, $mensagem)
 {
@@ -112,6 +110,3 @@ for ($i = 0; $i < $avisos[0]; $i++) {
 }
 
 ?>
-</body>
-
-</html>
