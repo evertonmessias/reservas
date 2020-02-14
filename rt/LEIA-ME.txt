@@ -1,14 +1,13 @@
 RT - Registro de Trabalhos.
 
-Esta aplicação, de autoria de Éverton e Paulo, tem por finalidade listar o Banco de Dados do site
-reservas, cujas colunas hasVideoConf hasRecording hasLaptop estejam ativadas.
+Esta aplicação, de autoria de Éverton e Paulo, tem por finalidade listar 
+o Banco de Dados do site reservas, cujas colunas 'Tipo' seja iguais a 
+'Tese/Dissertação' ou 'EQ' e também o campo 'Tem VideoConf' esteja ativado.
 
-O arquivo rt.sh deve ser chamado pelo cron em tempos pré determinados.
+Os arquivo suporte1dias.sh, suporte7dias.sh e clientes.sh deve ser
+chamados pelo cron em tempos pré determinados.
 
-ARRUMAR INSTRUÇÔES 
+Após ser executado, os scripts .sh executarão, via curl, os arquivos 
+de php que enviarão e-mails para o suporte e para os clientes.
 
-Após ser executado, o script rt.sh executa, via curl:
-1º O arquivo suporte.php; que lê o banco de dados, gera um log html e envia um e-mail para o suporte.
-2º O arquivo clientes.php; que lê o arquivo de log e o envia por e-mail para o suporte.
-
-Qualquer dúvida por favor procurar Éverton e/ou Paulo.
+** Qualquer dúvida por favor procurar Éverton e/ou Paulo.

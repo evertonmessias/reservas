@@ -17,5 +17,5 @@ teste="?dia=$1&mes=$2&ano=$3";
 else
 teste="";
 fi
-curl "$dominio/rt/rt_suporte.php$teste";
+curl "$dominio/rt/rt_suporte1dias.php$teste";
 
