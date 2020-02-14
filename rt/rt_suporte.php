@@ -2,11 +2,6 @@
 
 // EMAILS DE TAREFAS PARA O SUPORTE
 
-$cab_html = '<!DOCTYPE html><html lang="pt-br"><head><title>RT - Registros de Trabalho</title><meta charset="UTF-8" /><style>
-      h2 {text-align: left;}table,h2 {width: 1250px;border-spacing: 0px;display: block;position: relative;
-        margin: 0 auto;}td {border: 1px solid #000;padding: 4px;}tr.titulo {text-align: center;
-        font-weight: bold;background-color: #ddd;font-size: 17px;}</style></head><body>';
-
 if (@$_GET['dia'] && @$_GET['mes'] && @$_GET['ano']) {
   $hoje = @$_GET['ano'] . "-" . @$_GET['mes'] . "-" . @$_GET['dia'];
 } else {
@@ -51,15 +46,37 @@ function consultar($conexao, $inicio, $fim)
     }
   }
 
-  $titulo = "<h2>RESERVAS IC - Tarefas de " . conv2data($inicio) . " a " . conv2data($fim) . "</h2>";
+  function conv2respVC($x)  
+  {
+    $saida = array();
+    if ($x == 0) {
+      $saida[0] = "Não";
+      $saida[1] = "#fff";
+      return $saida;
+    } else {
+      $saida[0] = "<b>Sim</b>";
+      $saida[1] = "rgba(255,0,0,0.5)";
+      return $saida;
+    }
+  }
 
+  function conv2type($x){
+    if ($x == 'J'){
+      return "EQ";
+    }else if ($x == 'D'){
+      return "Tese/Dissertação";
+    }else{
+      return $x;
+    }
+  }
   $sql = "SELECT 
     mrbs_entry.start_time, 
     mrbs_entry.end_time, 
     mrbs_room.room_name, 
     mrbs_entry.create_by, 
     mrbs_entry.name,
-    mrbs_entry.mail, 
+    mrbs_entry.mail,
+    mrbs_entry.type, 
     mrbs_entry.hasVideoConf, 
     mrbs_entry.hasRecording, 
     mrbs_entry.hasLaptop 
@@ -67,8 +84,8 @@ function consultar($conexao, $inicio, $fim)
     LEFT JOIN mrbs_room 
     ON mrbs_entry.room_id = mrbs_room.id 
     WHERE (mrbs_entry.start_time BETWEEN $inicio and $fim) 
-    and (mrbs_entry.hasVideoConf = 1 or mrbs_entry.hasRecording = 1 or mrbs_entry.hasLaptop = 1)";
-
+    and (mrbs_entry.type = 'D' or mrbs_entry.type = 'J')";
+//D e J
   $lista = mysqli_query($conexao, $sql);
   $cab_tabela = "<table>
     <tr class='titulo'>
@@ -76,23 +93,36 @@ function consultar($conexao, $inicio, $fim)
     <td>Fim</td>
     <td>Sala</td>
     <td>Criado por</td>
-    <td>Nome</td>
+    <td>Título</td>
     <td>E-Mail</td>
+    <td>Tipo</td>
     <td>Videoconf ?</td>
     <td>Gravação ?</td>
     <td>Laptop ?</td>   
     </tr>";
 
   $corpo_tabela = "";
+  $vetor = array();
   while ($vetor = mysqli_fetch_array($lista)) {
-    $corpo_tabela = $corpo_tabela . "<tr><td>" . conv2data($vetor[0]) . "</td><td>" . conv2data($vetor[1]) . "</td><td>" . $vetor[2] . "</td><td>" . $vetor[3] . "</td><td>" . utf8_encode($vetor[4]) . "</td><td>" . $vetor[5] . "</td><td>" . conv2resp($vetor[6]) . "</td><td>" . conv2resp($vetor[7]) . "</td><td>" . conv2resp($vetor[8]) . "</td></tr>";
+    $corpo_tabela = $corpo_tabela . "<tr><td>" . conv2data($vetor[0]) . "</td><td>" . conv2data($vetor[1]) . "</td><td>" . $vetor[2] . "</td><td>" . $vetor[3] . "</td><td>" . utf8_encode($vetor[4]) . "</td><td>" . $vetor[5] . "</td><td>" . conv2type($vetor[6]) . "</td><td style='background-color:".conv2respVC($vetor[7])[1]."'>" . conv2respVC($vetor[7])[0] . "</td><td>" . conv2resp($vetor[8]) . "</td><td>" . conv2resp($vetor[9]) . "</td></tr>";
   }
-  $toda_tabela = $titulo . $cab_tabela . $corpo_tabela . "</table>";
-  return $toda_tabela;
+  $cab_html = '<!DOCTYPE html><html lang="pt-br"><head><title>RT - Registros de Trabalho</title><meta charset="UTF-8" /><style>
+  h2 {text-align: left;}table,h2 {width: 1250px;border-spacing: 0px;display: block;position: relative;
+    margin: 0 auto;}td {border: 1px solid #000;padding: 4px;}tr.titulo {text-align: center;
+    font-weight: bold;background-color: #ddd;font-size: 17px;}
+    </style></head><body>';
+
+  $titulo = "<h2>RESERVAS IC - Tarefas de " . conv2data($inicio) . " a " . conv2data($fim) . "</h2>";
+
+
+  $pretab = $cab_html . $titulo . $cab_tabela . $corpo_tabela . "</table>";
+  return $pretab;
 }
 $toda_tabela = consultar(conexao(), $inicio, $fim);
 
-$html = $cab_html . $toda_tabela . "</body></html>";
+$html = $toda_tabela . "</body></html>";
+
+print $html;
 
 fwrite($arquivo, $html);
 fclose($arquivo);

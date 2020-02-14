@@ -80,7 +80,7 @@ function consultar($conexao, $inicio, $fim)
     "</li><li><strong>Laptop: </strong>".conv2resp($vetor[8]).
     "</li></ul>";
 
-    $topo = "Prezado(a) Usuário(a): <span>".$vetor[3]."</span>,<br>confirmamos sua Reserva de Sala conforme os dados descritos abaixo:";
+    $topo = "Prezado(a) Usuário(a), <span>".$vetor[3]."</span>,<br>confirmamos sua Reserva de Sala conforme os dados descritos abaixo:";
     $lembrete = "<br>Obs.:Chegar com pelo menos 30 min de antecedência<br>
     Dúvidas envie um e-mail para: <b>suporte@ic.unicamp.br</b> ou ligue: <b>35215915</b>";
 
