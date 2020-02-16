@@ -59,7 +59,7 @@ $db_database = "mrbsic_dev";
 // Database login user name:
 $db_login = "root";
 // Database login password:
-$db_password = 'efc2505xx';
+$db_password = '';
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";

@@ -1448,8 +1448,8 @@ echo "</fieldset>\n";
     
     // The Submit button
     echo "<div id=\"edit_entry_submit_save\">\n";
-    echo "<input class=\"submit default_action\" type=\"submit\" name=\"save_button\" value=\"" .
-      get_vocab("save") . "\">\n";
+    echo "<input class=\"submit default_action\" type=\"submit\" name=\"save_button\"
+      id=\"submeter\" value=\"" . get_vocab("save") . "\">\n";
     echo "</div>\n";
     
     // divs to hold the results of the Ajax checking of the booking
@@ -1479,7 +1479,19 @@ echo "</fieldset>\n";
     ?>
   </fieldset>
 </form>
-
+<script>
+    $(function () {
+      $('#submeter').click(()=>{        
+       var name = $("input[name='name']").val();
+       var f_mail = $("input[name='f_mail']").val();
+       $.post("./rt/teste.php", {
+						name: name, f_mail: f_mail
+					},function(mostrar) {
+						alert(mostrar);
+					})
+      });    
+      })
+</script>
 <?php 
 output_trailer();
 
