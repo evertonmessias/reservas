@@ -1479,6 +1479,7 @@ echo "</fieldset>\n";
     ?>
   </fieldset>
 </form>
+<!--
 <script>
     $(function () {
       $('#submeter').click(()=>{        
@@ -1486,12 +1487,11 @@ echo "</fieldset>\n";
        var f_mail = $("input[name='f_mail']").val();
        $.post("./rt/teste.php", {
 						name: name, f_mail: f_mail
-					},function(mostrar) {
-						alert(mostrar);
 					})
       });    
       })
 </script>
+    -->
 <?php 
 output_trailer();
 
