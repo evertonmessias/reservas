@@ -13,7 +13,7 @@ $mes = date("m");
 $ano = date("Y");
 $hora = date("H");
 $min = date("i");
-$data = $dia . "-" . $mes . "-" . $ano . "_" . $hora . ":" . $min;
+$data = $dia . "-" . $mes . "-" . $ano . "_" . $hora . "_" . $min;
 $path = './rt/log/' . $data . '.txt';
 $arquivo = fopen($path, 'w');
 
@@ -26,8 +26,6 @@ function gravar($nome, $email, $arquivo)
 }
 
 gravar($nome, $f_mail, $arquivo);
-
-
 
 function invalid_booking($message)
 {
