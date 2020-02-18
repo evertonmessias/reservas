@@ -554,6 +554,11 @@ function create_field_entry_privacy_status($disabled = FALSE)
   }
 }
 
+function geraVideoConf(){
+  echo "<label>VideoConf: </label><input type='checkbox' name='f_hasVideoConf' id='f_hasVideoConf'/>";
+}
+
+/*
 function create_field_entry_custom_field($field, $key, $disabled = FALSE)
 {
   global $custom_fields, $tbl_entry;
@@ -616,6 +621,7 @@ function create_field_entry_custom_field($field, $key, $disabled = FALSE)
   }
   echo "</div>\n";
 }
+*/
 
 
 // Get non-standard form variables
@@ -1137,9 +1143,12 @@ if (isset($id) && !isset($copy)) {
           echo "<h2 class='aviso'>&emsp;&emsp;&emsp;&emsp;Importante:</h2>";
           break;
 
+        case 'hasVideoConf':
+          geraVideoConf();
+        break;
         default:
-          create_field_entry_custom_field($custom_fields_map[$key], $key);
-          break;
+          //create_field_entry_custom_field($custom_fields_map[$key], $key);
+        break;
       }
     }
 
