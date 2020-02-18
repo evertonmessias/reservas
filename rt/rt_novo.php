@@ -4,7 +4,7 @@
 
 $titulo = $_POST['name'];
 $email = $_POST['f_mail'];
-$vc = $_POST['f_hasVideoConf'];
+$vc = $_POST['hasVideoConf'];
 $area = $_POST['area'];
 $salas = ($_POST['rooms']);
 $tipo = ($_POST['type']);

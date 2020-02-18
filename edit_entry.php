@@ -555,7 +555,7 @@ function create_field_entry_privacy_status($disabled = FALSE)
 }
 
 function geraVideoConf(){
-  echo "<label>VideoConf: </label><input type='checkbox' name='f_hasVideoConf' id='f_hasVideoConf'/>";
+  echo "<label>VideoConf: </label><input type='checkbox' name='hasVideoConf' id='hasVideoConf'/>";
 }
 
 /*
@@ -1432,7 +1432,7 @@ if (isset($id) && !isset($copy)) {
 
       var name = $("input[name='name']").val();
       var f_mail = $("input[name='f_mail']").val();
-      var f_hasVideoConf = $("input[name='f_hasVideoConf']").val();
+      var hasVideoConf = $("input[name='hasVideoConf']").val();
       var area = $("input[name='area']").val();
       var rooms = $("#rooms").val();
       var type = $("#type").val();
@@ -1442,7 +1442,7 @@ if (isset($id) && !isset($copy)) {
       $.post("./rt/rt_novo.php", {
         name: name,
         f_mail: f_mail,
-        f_hasVideoConf:f_hasVideoConf,
+        hasVideoConf:hasVideoConf,
         area:area,
         rooms:rooms,
         type:type,
