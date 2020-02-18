@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
 $user = "root";
-$password = "";
+$password = "efc2505xx";
 $table = "mrbsic_dev";
 $mail_suport = "everton.messias@gmail.com";
 ?>

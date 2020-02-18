@@ -5,28 +5,6 @@ require "defaultincludes.inc";
 require_once "mrbs_sql.inc";
 require_once "functions_ical.inc";
 
-$nome = $_POST['name'];
-$f_mail = $_POST['f_mail'];
-
-$dia = date("d");
-$mes = date("m");
-$ano = date("Y");
-$hora = date("H");
-$min = date("i");
-$data = $dia . "-" . $mes . "-" . $ano . "_" . $hora . "_" . $min;
-$path = './rt/log/' . $data . '.txt';
-$arquivo = fopen($path, 'w');
-
-function gravar($nome, $email, $arquivo)
-{
-    $string = $nome . ';' . $email;
-    $saida = fwrite($arquivo, $string);
-    fclose($arquivo);
-    return $saida;
-}
-
-gravar($nome, $f_mail, $arquivo);
-
 function invalid_booking($message)
 {
   global $day, $month, $year, $area, $room;
