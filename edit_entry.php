@@ -554,8 +554,17 @@ function create_field_entry_privacy_status($disabled = FALSE)
   }
 }
 
-function geraVideoConf(){
-  echo "<label>VideoConf: </label><input type='checkbox' name='hasVideoConf' id='hasVideoConf'/>";
+function create_field_entry_important(){
+  echo "<div id=\"suport\">\n\n<fieldset class='importante'>";
+  echo "<label>E-Mail: </label><input type='text' name='f_mail' id='f_mail'>\n";
+  echo "<br><br>";
+  echo "<label>Outros: </label><select size='3' multiple name='f_important' id='f_important'>
+  <option value='1'>Video Conferência</option>
+  <option value='2'>Gravação</option>
+  <option value='3'>Laptop</option>
+  </select><small>Pressione Control-Click para selecionar mais de um ítem</small>
+  ";
+  echo "</fieldset></div><p>&nbsp;</p>\n";
 }
 
 /*
@@ -1143,8 +1152,8 @@ if (isset($id) && !isset($copy)) {
           echo "<h2 class='aviso'>&emsp;&emsp;&emsp;&emsp;Importante:</h2>";
           break;
 
-        case 'hasVideoConf':
-          geraVideoConf();
+        case 'important':
+          create_field_entry_important();
         break;
         default:
           //create_field_entry_custom_field($custom_fields_map[$key], $key);
@@ -1395,7 +1404,7 @@ if (isset($id) && !isset($copy)) {
 
     // The Submit button
     echo "<div id=\"edit_entry_submit_save\">\n";
-    echo "<input class=\"submit default_action\" type=\"submit\" name=\"save_button\"
+    echo "<input class=\"submit default_action\" type=\"button\" name=\"save_button\"
       id=\"submeter\" value=\"" . get_vocab("save") . "\">\n";
     echo "</div>\n";
 
@@ -1429,20 +1438,20 @@ if (isset($id) && !isset($copy)) {
 <script>
   $(function() {
     $('#submeter').click(() => {
-
       var name = $("input[name='name']").val();
-      var f_mail = $("input[name='f_mail']").val();
-      var hasVideoConf = $("input[name='hasVideoConf']").val();
+      var mail = $("#f_mail").val();
+      var important = $("#f_important").val();
       var area = $("input[name='area']").val();
       var rooms = $("#rooms").val();
       var type = $("#type").val();
       var data = $("#start_datepicker").val();
-      var hora = $("#start_seconds").val();          
-
+      var hora = $("#start_seconds").val();   
+      if(name && mail){
+      document.getElementById("main").submit();
       $.post("./rt/rt_novo.php", {
         name: name,
-        f_mail: f_mail,
-        hasVideoConf:hasVideoConf,
+        mail: mail,
+        important:important,
         area:area,
         rooms:rooms,
         type:type,
@@ -1450,7 +1459,10 @@ if (isset($id) && !isset($copy)) {
         hora:hora
       },(mostrar) => {
         alert(mostrar);
-      })
+      });
+    }else{
+      alert("Digite os campos corretamente !!!");
+    }
     });
   })
 </script>
