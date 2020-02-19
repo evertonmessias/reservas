@@ -1462,7 +1462,7 @@ if (isset($id) && !isset($copy)) {
         return false;
       } else {
         document.getElementById("main").submit();
-        $.post("./rt/rt_novo.php", {
+        $.post("./rt/sys/rt_novo.php", {
           name: name,
           mail: mail,
           important: important,

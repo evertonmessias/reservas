@@ -2,7 +2,7 @@
 
 include './config.inc';
 
-// EMAILS DE AVISOS PARA OS CLIENTES
+// EMAILS DE AVISOS PARA OS CLIENTES ( LEMBRETE 1 SEMANA )
 
 if (@$_GET['dia'] && @$_GET['mes'] && @$_GET['ano']) {
   $hoje = @$_GET['ano'] . "-" . @$_GET['mes'] . "-" . @$_GET['dia'];
@@ -10,9 +10,12 @@ if (@$_GET['dia'] && @$_GET['mes'] && @$_GET['ano']) {
   $hoje = 'now';
 }
 
-$in = new DateTime($hoje, new DateTimeZone('America/Recife'));
-$inicio = $in->getTimestamp();
-$f = $in->add(new DateInterval('P1D')); // add 1 dias
+$novadata = new DateTime($hoje, new DateTimeZone('America/Recife'));
+
+$i = $novadata->add(new DateInterval('P6D')); // add 6 dias
+$inicio = $i->getTimestamp();
+
+$f = $novadata->add(new DateInterval('P7D')); // add 7 dias
 $fim = $f->getTimestamp();
 
 $conexao =  mysqli_connect($server, $user, $password, $table);
@@ -58,8 +61,8 @@ function consultar($conexao, $inicio, $fim)
     "</li><li><strong>Video Conferência: </strong>".conv2resp($vetor[6]).
     "</li></ul>";
 
-    $topo = "Prezado(a) Usuário(a),<br>confirmamos sua Reserva de Sala conforme os dados descritos abaixo:";
-    $lembrete = "<br>Obs.:Chegar com pelo menos 30 min de antecedência<br>
+    $topo = "Prezado(a) Usuário(a),<br>Alertamos sobre sua Reserva de Sala conforme os dados descritos abaixo:";
+    $lembrete = "<br>Obs.:Chegar no dia com pelo menos 30 min de antecedência<br>
     Dúvidas envie um e-mail para: <b>suporte@ic.unicamp.br</b> ou ligue: <b>35215915</b>";
 
     $qtd++;

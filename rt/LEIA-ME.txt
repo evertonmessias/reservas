@@ -1,8 +1,8 @@
 RT - Registro de Trabalhos.
 
 Esta aplicação, de autoria de Éverton e Paulo, tem por finalidade listar 
-o Banco de Dados do site reservas, cujas colunas 'Tipo' seja iguais a 
-'Tese/Dissertação' ou 'EQ' e também o campo 'Tem VideoConf' esteja ativado.
+o Banco de Dados do site reservas, cujas opções de 'Tese/Dissertação',
+'EQ' e 'VideoConferência' esteja ativado.
 
 Os arquivo 'disparosDiarios.sh' e 'disparosSemanais.sh' devem ser
 chamados pelo CRON em tempos pré determinados (diário e semanal).
@@ -10,6 +10,11 @@ chamados pelo CRON em tempos pré determinados (diário e semanal).
 Após serem chamados pelo cron os scripts .sh executarão, via curl, 
 os arquivos PHP que por sua vez enviarão e-mails para o SUPORTE e para os CLIENTES.
 
-* Obs.: Alterar as variáveis globais no arquivo config.inc
+Instalação:
 
+Criar nas tabelas 'mrbs_entry' e 'mrbs_repeat' as colunas:
+ - 'mail' (varchar 50) depois de 'name'
+ - 'important' (int) depois de hasLaptop (última coluna).
+
+* Alterar as configurações globais em config.inc.php e /rt/config.inc
 ** Qualquer dúvida, por favor, procurar Éverton e/ou Paulo.

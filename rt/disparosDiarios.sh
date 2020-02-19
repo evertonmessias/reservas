@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
 #
-# Script para ser chamado pelo cron A CADA 7 DIAS;
-# gera o arquivo de log em html, que será enviado pelo e-mail.
+# Script para ser chamado pelo cron TODOS OS DIAS;
+# .. gera log em html
 
 # ==> Alterar a variável $domínio
 
