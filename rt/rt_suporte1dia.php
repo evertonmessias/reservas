@@ -30,52 +30,6 @@ $conexao =  mysqli_connect($server, $user, $password, $table);
 
 function consultar($conexao, $inicio, $fim)
 {
-
-  function conv2data($x)
-  {
-    $formato = 'd/m/Y H:i';
-    $data = new DateTime('NOW', new DateTimeZone('America/Recife'));
-    $data->setTimestamp($x);
-    return $data->format($formato);
-  }
-  function conv2resp($x)
-  {
-    if ($x == 0) {
-      return "Não";
-    } else {
-      return "<b>Sim</b>";
-    }
-  }
-
-  function conv2respVC($x)  
-  {
-    $saida = array();
-    if ($x == 0) {
-      $saida[0] = "Não";
-      $saida[1] = "#fff";
-      return $saida;
-    } else {
-      $saida[0] = "<b>Sim</b>";
-      $saida[1] = "rgba(255,0,0,0.5)";
-      return $saida;
-    }
-  }
-
-  function conv2type($x){
-    switch($x){
-      case 'J':return "EQ";break;
-      case 'D':return "Tese/Dissertação";break;
-      case 'I':return "Interno";break;
-      case 'E':return "Externo";break;
-      case 'A':return "Aula";break;
-      case 'B':return "Palestra";break;
-      case 'C':return "Reunião";break;
-      case 'F':return "Congregação";break;
-      case 'G':return "Concurso";break;
-      case 'H':return "Feriado";break;
-    }
-  }
-
   //************************** TAB 1 **************************** */
 
   $sql = "SELECT 
@@ -86,9 +40,7 @@ function consultar($conexao, $inicio, $fim)
     mrbs_entry.name,
     mrbs_entry.mail,
     mrbs_entry.type, 
-    mrbs_entry.hasVideoConf, 
-    mrbs_entry.hasRecording, 
-    mrbs_entry.hasLaptop 
+    mrbs_entry.important 
     FROM mrbs_entry 
     LEFT JOIN mrbs_room 
     ON mrbs_entry.room_id = mrbs_room.id 
@@ -107,15 +59,13 @@ function consultar($conexao, $inicio, $fim)
     <td>Título</td>
     <td>E-Mail</td>
     <td>Tipo</td>
-    <td>Videoconf ?</td>
-    <td>Gravação ?</td>
-    <td>Laptop ?</td>   
+    <td>Videoconf ?</td>  
     </tr>";
 
   $corpo_tabela = "";
   $vetor = array();
   while ($vetor = mysqli_fetch_array($lista)) {
-    $corpo_tabela = $corpo_tabela . "<tr><td>" . conv2data($vetor[0]) . "</td><td>" . conv2data($vetor[1]) . "</td><td>" . $vetor[2] . "</td><td>" . $vetor[3] . "</td><td>" . utf8_encode($vetor[4]) . "</td><td>" . $vetor[5] . "</td><td style='background-color:#ff0;'>" . conv2type($vetor[6]) . "</td><td style='background-color:".conv2respVC($vetor[7])[1]."'>" . conv2respVC($vetor[7])[0] . "</td><td>" . conv2resp($vetor[8]) . "</td><td>" . conv2resp($vetor[9]) . "</td></tr>";
+    $corpo_tabela = $corpo_tabela . "<tr><td>" . conv2data($vetor[0]) . "</td><td>" . conv2data($vetor[1]) . "</td><td>" . $vetor[2] . "</td><td>" . $vetor[3] . "</td><td>" . utf8_encode($vetor[4]) . "</td><td>" . $vetor[5] . "</td><td style='background-color:#ff0;'>" . conv2type($vetor[6]) . "</td><td style='background-color:".conv2respVC($vetor[7])[1]."'>" . conv2respVC($vetor[7])[0] . "</td></tr>";
   }
 
   //************************ TAB 2  ***************************
@@ -128,14 +78,12 @@ function consultar($conexao, $inicio, $fim)
     mrbs_entry.name,
     mrbs_entry.mail,
     mrbs_entry.type, 
-    mrbs_entry.hasVideoConf, 
-    mrbs_entry.hasRecording, 
-    mrbs_entry.hasLaptop 
+    mrbs_entry.important 
     FROM mrbs_entry 
     LEFT JOIN mrbs_room 
     ON mrbs_entry.room_id = mrbs_room.id 
     WHERE (mrbs_entry.start_time BETWEEN $inicio and $fim) 
-    and (mrbs_entry.hasVideoConf = '1')";
+    and (mrbs_entry.important = '1' or mrbs_entry.important = '4' or mrbs_entry.important = '5')";
 
   $lista2 = mysqli_query($conexao, $sql2);
   $cab_tabela2 = "<br><br>
@@ -149,15 +97,13 @@ function consultar($conexao, $inicio, $fim)
     <td>Título</td>
     <td>E-Mail</td>
     <td>Tipo</td>
-    <td>Videoconf ?</td>
-    <td>Gravação ?</td>
-    <td>Laptop ?</td>   
+    <td>Videoconf ?</td>  
     </tr>";
 
   $corpo_tabela2 = "";
   $vetor2 = array();
   while ($vetor2 = mysqli_fetch_array($lista2)) {
-    $corpo_tabela2 = $corpo_tabela2 . "<tr><td>" . conv2data($vetor2[0]) . "</td><td>" . conv2data($vetor2[1]) . "</td><td>" . $vetor2[2] . "</td><td>" . $vetor2[3] . "</td><td>" . utf8_encode($vetor2[4]) . "</td><td>" . $vetor2[5] . "</td><td>" . conv2type($vetor2[6]) . "</td><td style='background-color:#f00;'>" . conv2resp($vetor2[7]) . "</td><td>" . conv2resp($vetor2[8]) . "</td><td>" . conv2resp($vetor2[9]) . "</td></tr>";
+    $corpo_tabela2 = $corpo_tabela2 . "<tr><td>" . conv2data($vetor2[0]) . "</td><td>" . conv2data($vetor2[1]) . "</td><td>" . $vetor2[2] . "</td><td>" . $vetor2[3] . "</td><td>" . utf8_encode($vetor2[4]) . "</td><td>" . $vetor2[5] . "</td><td style='background-color:#ff0;'>" . conv2type($vetor2[6]) . "</td><td style='background-color:".conv2respVC($vetor2[7])[1]."'>" . conv2respVC($vetor2[7])[0] . "</td></tr>";
   }
 
   // ****************************************
@@ -183,7 +129,7 @@ fwrite($arquivo, $html);
 fclose($arquivo);
 
 $cabecalho = 'MIME-Version: 1.0' . "\r\n";
-$cabecalho .= 'Content-type: text/html; charset=iso-8859-1;' . "\r\n";
+$cabecalho .= 'Content-type: text/html; charset=UTF-8;' . "\r\n";
 
 $destino = $mail_suport;
 $assunto = 'RESERVAS IC - Tarefas da Semana';

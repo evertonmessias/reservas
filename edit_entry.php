@@ -554,15 +554,20 @@ function create_field_entry_privacy_status($disabled = FALSE)
   }
 }
 
-function create_field_entry_important(){
+function create_field_entry_important()
+{
   echo "<div id=\"suport\">\n\n<fieldset class='importante'>";
-  echo "<label>E-Mail: </label><input type='text' name='f_mail' id='f_mail'>\n";
+  echo "<label>E-Mail: </label><input type='text' name='f_mail' id='f_mail' placeholder='Digite um e-mail para receber instruções'>\n";
   echo "<br><br>";
-  echo "<label>Outros: </label><select size='3' multiple name='f_important' id='f_important'>
+  echo "<label>Outros: </label><select size='4' name='f_important' id='f_important'>
+  <option value='0' selected>Nenhum</option>
   <option value='1'>Video Conferência</option>
   <option value='2'>Gravação</option>
   <option value='3'>Laptop</option>
-  </select><small>Pressione Control-Click para selecionar mais de um ítem</small>
+  <option value='4'>Video Conferência e Gravação</option>
+  <option value='5'>Video Conferência e Laptop</option>
+  <option value='6'>Gravação e Laptop</option>
+  </select>
   ";
   echo "</fieldset></div><p>&nbsp;</p>\n";
 }
@@ -1149,15 +1154,15 @@ if (isset($id) && !isset($copy)) {
         case 'privacy_status':
           create_field_entry_privacy_status();
           echo "<h2>&nbsp;</h2>";
-          echo "<h2 class='aviso'>&emsp;&emsp;&emsp;&emsp;Importante:</h2>";
+          echo "<h3 class='aviso'>Importante:</h3>";
           break;
 
         case 'important':
           create_field_entry_important();
-        break;
+          break;
         default:
           //create_field_entry_custom_field($custom_fields_map[$key], $key);
-        break;
+          break;
       }
     }
 
@@ -1445,24 +1450,31 @@ if (isset($id) && !isset($copy)) {
       var rooms = $("#rooms").val();
       var type = $("#type").val();
       var data = $("#start_datepicker").val();
-      var hora = $("#start_seconds").val();   
-      if(name && mail){
-      document.getElementById("main").submit();
-      $.post("./rt/rt_novo.php", {
-        name: name,
-        mail: mail,
-        important:important,
-        area:area,
-        rooms:rooms,
-        type:type,
-        data:data,
-        hora:hora
-      },(mostrar) => {
-        alert(mostrar);
-      });
-    }else{
-      alert("Digite os campos corretamente !!!");
-    }
+      var hora = $("#start_seconds").val();
+      var exp = /^\w+([\.-]\w+)*@\w+\.(\w+\.)*\w{2,3}$/; // ER valida mail   
+      if (name.length < 3) {
+        alert("Digite o campo Nome Corretamente!");
+        name.focus();
+        return false;
+      } else if (!exp.test(mail)) {
+        alert("E-Mail Inválido!");
+        mail.focus();
+        return false;
+      } else {
+        document.getElementById("main").submit();
+        $.post("./rt/rt_novo.php", {
+          name: name,
+          mail: mail,
+          important: important,
+          area: area,
+          rooms: rooms,
+          type: type,
+          data: data,
+          hora: hora
+        }, (mostrar) => {
+          alert(mostrar);
+        });
+      }
     });
   })
 </script>
