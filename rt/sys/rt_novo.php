@@ -45,7 +45,7 @@ function enviar($destino, $mens)
   return mail($destino, $assunto, $mens, $cabecalho);
 }
 
-if ($email && ($tipo == 'J' || $tipo == 'D' || $importante == 1|| $importante == 4|| $importante == 5)) {
+if ($tipo == 'J' || $tipo == 'D' || $importante == 1|| $importante == 4|| $importante == 5) {
   $ok = enviar($email, $mensagem);
   if ($ok) {
     echo "Reserva criada: Um e-mail foi enviado para você !";

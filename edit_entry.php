@@ -1444,27 +1444,37 @@ if (isset($id) && !isset($copy)) {
   $(function() {
     $('#submeter').click(() => {
       var name = $("input[name='name']").val();
-      var mail = $("#f_mail").val();
+      var emails = $("#f_mail").val();
       var important = $("#f_important").val();
       var area = $("input[name='area']").val();
       var rooms = $("#rooms").val();
       var type = $("#type").val();
       var data = $("#start_datepicker").val();
       var hora = $("#start_seconds").val();
-      var exp = /^\w+([\.-]\w+)*@\w+\.(\w+\.)*\w{2,3}$/; // ER valida mail   
+      var exp = /^\w+([\.-]\w+)*@\w+\.(\w+\.)*\w{2,3}$/; // ER valida mail
+
+      var mail = emails.split(",");      
+      var teste = true;
+      var resp = "";
+      for (var i=0; i<mail.length;i++){
+        if(!exp.test(mail[i])){
+          teste = false;
+          resp = `O E-Mail ( ${i+1} ) está Incorreto !`;
+        }
+      }
       if (name.length < 3) {
         alert("Digite o campo Nome Corretamente!");
         name.focus();
         return false;
-      } else if (!exp.test(mail)) {
-        alert("E-Mail Inválido!");
-        mail.focus();
+      } else if (!teste) {
+        alert(resp);
+        $("#f_mail").focus();
         return false;
       } else {
         document.getElementById("main").submit();
         $.post("./rt/sys/rt_novo.php", {
           name: name,
-          mail: mail,
+          mail: emails,
           important: important,
           area: area,
           rooms: rooms,
@@ -1473,7 +1483,7 @@ if (isset($id) && !isset($copy)) {
           hora: hora
         }, (mostrar) => {
           alert(mostrar);
-        });
+        });      
       }
     });
   })

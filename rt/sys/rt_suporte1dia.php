@@ -132,7 +132,7 @@ $cabecalho = 'MIME-Version: 1.0' . "\r\n";
 $cabecalho .= 'Content-type: text/html; charset=UTF-8;' . "\r\n";
 
 $destino = $mail_suport;
-$assunto = 'RESERVAS IC - Tarefas da Semana';
+$assunto = 'RESERVAS IC - Tarefas do Dia';
 
 mail($destino, $assunto, $html, $cabecalho);
 
