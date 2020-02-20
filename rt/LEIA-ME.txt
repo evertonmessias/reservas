@@ -13,8 +13,8 @@ os arquivos PHP que por sua vez enviarão e-mails para o SUPORTE e para os CLIEN
 Instalação:
 
 Criar nas tabelas 'mrbs_entry' e 'mrbs_repeat' as colunas:
- - 'mail' (varchar 50) depois de 'name'
+ - 'mail' (varchar 100) depois de 'name'
  - 'important' (int) depois de hasLaptop (última coluna).
 
-* Alterar as configurações globais em config.inc.php e /rt/config.inc
+* Alterar, se necessário, as configurações globais em config.inc.php
 ** Qualquer dúvida, por favor, procurar Éverton e/ou Paulo.
