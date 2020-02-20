@@ -1,14 +1,16 @@
 <?php
 
-// variáveis da API RT **********************************
+include '../../config.inc.php';
 
-$server = "localhost";
-$user = "root";
-$password = "efc2505xx";
-$table = "mrbsic_dev";
-$mail_suport = "everton.messias@gmail.com";
+// variáveis da api 'RT' (arquivo config.inc.php) **********************************
 
-// funções ***********************************************
+$server = $db_host;
+$user = $db_login;
+$password = $db_password;
+$table = $db_database;
+$mail_suport = $suport_email;
+
+// funções ***********************************************************************
 
 function int2text($n)
 {

@@ -59,7 +59,7 @@ $db_database = "mrbsic_dev";
 // Database login user name:
 $db_login = "root";
 // Database login password:
-$db_password = 'efc2505xx';
+$db_password = '';
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";
@@ -81,6 +81,9 @@ $mrbs_admin_email = "ismael@ic.unicamp.br";
 $mrbs_company = "Instituto de Computação - UNICAMP";   // This line must always be uncommented ($mrbs_company is used in various places)
 $mrbs_company_logo = "ic.gif";    // name of your logo file.   This example assumes it is in the MRBS directory
 $mrbs_company_url = "http://www.ic.unicamp.br/";
+
+// **********   e-mail do suporte: ***********
+$suport_email = "everton.messias@gmail.com";
 
 $unicode_encoding = 1;
 $strftime_format['daymonth'] = "%d %b";
