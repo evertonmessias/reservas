@@ -557,7 +557,7 @@ function create_field_entry_privacy_status($disabled = FALSE)
 function create_field_entry_important()
 {
   echo "<div id=\"suport\">\n\n<fieldset class='importante'>";
-  echo "<label>E-Mail: </label><input type='text' name='f_mail' id='f_mail' placeholder='Digite um e-mail para receber instruções'>\n";
+  echo "<label>E-Mail: </label><input type='text' name='f_mail' id='f_mail' placeholder='E-mails para contato, separe com vírgulas'>\n";
   echo "<br><br>";
   echo "<label>Outros: </label><select size='4' name='f_important' id='f_important'>
   <option value='0' selected>Nenhum</option>

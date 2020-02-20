@@ -560,7 +560,7 @@ In the classes below
 
   fieldset.importante{
   margin-left:142px;
-  width:330px;
+  width:360px;
   height:110px;
   padding:5px;
   padding-top:25px;
@@ -577,9 +577,9 @@ In the classes below
   margin-left:14px;
   margin-top: -5px;
   height:20px;
-  width:240px;
+  width:260px;
   }
 
   fieldset.importante select{
-  margin-right:15px;width:245px;
+  margin-right:15px;width:265px;
   }
