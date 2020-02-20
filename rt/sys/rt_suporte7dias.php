@@ -101,7 +101,7 @@ function consultar($conexao, $inicio, $fim)
   $corpo_tabela2 = "";
   $vetor2 = array();
   while ($vetor2 = mysqli_fetch_array($lista2)) {
-    $corpo_tabela2 = $corpo_tabela2 . "<tr><td>" . conv2data($vetor2[0]) . "</td><td>" . conv2data($vetor2[1]) . "</td><td>" . $vetor2[2] . "</td><td>" . $vetor2[3] . "</td><td>" . utf8_encode($vetor2[4]) . "</td><td>" . $vetor2[5] . "</td><td style='background-color:#ff0;'>" . conv2type($vetor2[6]) . "</td><td style='background-color:".conv2respVC($vetor2[7])[1]."'>" . conv2respVC($vetor[7])[0] . "</td></tr>";
+    $corpo_tabela2 = $corpo_tabela2 . "<tr><td>" . conv2data($vetor2[0]) . "</td><td>" . conv2data($vetor2[1]) . "</td><td>" . $vetor2[2] . "</td><td>" . $vetor2[3] . "</td><td>" . utf8_encode($vetor2[4]) . "</td><td>" . $vetor2[5] . "</td><td style='background-color:#ff0;'>" . conv2type($vetor2[6]) . "</td><td style='background-color:".conv2respVC($vetor2[7])[1]."'>" . conv2respVC($vetor2[7])[0] . "</td></tr>";
   }
 
   // ****************************************
