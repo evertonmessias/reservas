@@ -1463,7 +1463,7 @@ if (isset($id) && !isset($copy)) {
         }
       }
       if (name.length < 3) {
-        alert("Digite o campo Nome Corretamente!");
+        alert("Digite o campo Descrição Corretamente!");
         name.focus();
         return false;
       } else if (!teste) {
