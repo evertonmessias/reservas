@@ -2,15 +2,13 @@
 clear
 #
 # Script para ser chamado pelo cron TODOS OS DIAS;
-# .. gera log em html
-
-# ==> Alterar a variável $domínio
-
-# ==> Para testar o script use 'suporte.sh dia mes ano' ; 
-# se executar somente 'suporte.sh' então será feito com a data de hoje.
+#
+# ==> A variável $domínio está no arquivo config.inc.php
+#
+# ==> Para testar o script use 'disparosDiarios.sh dia mes ano' ; 
 #
 #
-dominio="http://localhost/reservas";
+dominio=`cat ../config.inc.php |grep '$dominio'|sed -e 's/";//'|sed -e 's/$dominio="//'`
 #
 if [[ $1 && $2 && $3 ]];then
 teste="?dia=$1&mes=$2&ano=$3";

@@ -82,8 +82,9 @@ $mrbs_company = "Instituto de Computação - UNICAMP";   // This line must alway
 $mrbs_company_logo = "ic.gif";    // name of your logo file.   This example assumes it is in the MRBS directory
 $mrbs_company_url = "http://www.ic.unicamp.br/";
 
-// **********   e-mail do suporte: ***********
+// ********** Variaveis RT ***********
 $suport_email = "everton.messias@gmail.com,ismael@ic.unicamp.br,pasergio@ic.unicamp.br,andre@ic.unicamp.br,william@ic.unicamp.br";
+$dominio="http://localhost/reservas";
 
 $unicode_encoding = 1;
 $strftime_format['daymonth'] = "%d %b";
