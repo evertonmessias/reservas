@@ -83,7 +83,7 @@ $mrbs_company_logo = "ic.gif";    // name of your logo file.   This example assu
 $mrbs_company_url = "http://www.ic.unicamp.br/";
 
 // ********** Variaveis RT ***********
-$suport_email = "everton.messias@gmail.com,ismael@ic.unicamp.br,pasergio@ic.unicamp.br,andre@ic.unicamp.br,william@ic.unicamp.br";
+$suport_email = "apoiovc@ic.unicamp.br";
 $dominio="http://localhost/reservas";
 
 $unicode_encoding = 1;
