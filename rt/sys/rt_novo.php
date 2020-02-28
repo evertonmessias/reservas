@@ -35,7 +35,7 @@ $texto ="<h3>Prezado(a) Professor(a),</h3>
  funcionando no dia. Recomendados a utilização de um headset para uma melhor qualidade 
  no áudio.</p>
  <p><b>Nosso Usuário Skype:</b> ic.unicamp<br>
- <b>Nosso Usuário Hangsout:</b> icunicamp9 :</p>
+ <b>Nosso Usuário Hangout:</b> icunicamp9 :</p>
 <p>Obs.: Entrar em contato por um dos serviços acima pelo menos <b>15min</b> antes!</p>
 <p>Estamos a disposição desde já.</p>
 <p><b>Atenciosamente,</b><br>
@@ -54,7 +54,7 @@ function enviar($destino, $mens)
   return mail($destino, $assunto, $mens, $cabecalho);
 }
 
-if ($tipo == 'J' || $tipo == 'D' || $importante == 1|| $importante == 4|| $importante == 5) {
+if (($tipo == 'J' || $tipo == 'D' ) && ($importante == 1|| $importante == 4|| $importante == 5)) {
   $ok = enviar($email, $mensagem);
   if ($ok) {
     echo "Reserva criada; Um e-mail foi enviado!";
