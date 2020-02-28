@@ -34,6 +34,9 @@ $texto ="<h3>Prezado(a) Professor(a),</h3>
 <p>** Garanta que seu sistema de áudio (microfone e saída de som) e webcam, estejam
  funcionando no dia. Recomendados a utilização de um headset para uma melhor qualidade 
  no áudio.</p>
+ <p><b>Nosso Usuário Skype:</b> ic.unicamp<br>
+ <b>Nosso Usuário Hangsout:</b> icunicamp9 :</p>
+<p>Obs.: Entrar em contato por um dos serviços acima pelo menos <b>15min</b> antes!</p>
 <p>Estamos a disposição desde já.</p>
 <p><b>Atenciosamente,</b><br>
 Equipe de TI do Instituto de Computação - Unicamp</p>
